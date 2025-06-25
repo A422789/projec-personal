@@ -578,12 +578,38 @@
   </style>
 </head>
 <body>
+  
   <!-- Section 1: Fullscreen Video & Welcome -->
   <section
     id="section1"
     class="vh-100 position-relative text-center d-flex align-items-end justify-content-center"
     style="background-image: url(image/HABIBA\ Birthday.jpg); background-position: top; background-size: contain; background-repeat: no-repeat; "
  >
+<audio id="bg-audio" src="audio/happy-birthday.mp3" loop></audio>
+
+<script>
+const audio = document.getElementById('bg-audio');
+
+function tryPlayAudio() {
+  audio.play().then(() => {
+    // اشتغل الصوت
+    document.removeEventListener('scroll', tryPlayAudio);
+    document.removeEventListener('click', tryPlayAudio);
+    document.removeEventListener('mousemove', tryPlayAudio);
+  }).catch((e) => {
+    console.log("المتصفح منع التشغيل: ", e);
+  });
+}
+
+// شغل الصوت بعد أول حركة
+document.addEventListener('scroll', tryPlayAudio);
+document.addEventListener('click', tryPlayAudio);
+document.addEventListener('mousemove', tryPlayAudio);
+</script>
+
+
+<audio id="birthday-audio" src="audio/حالات عيد ميلاد Happy birthday حالات واتساب هابي بيرث دي تو يو.mp3"></audio>
+
     <video
       autoplay
       muted
@@ -873,6 +899,83 @@ The most beautiful girl ever
           ></span>
         </button>
       </div>
+    </div>
+  </section>
+   <!-- Section 8: Future Message -->
+  <section
+    id="section8"
+    class="py-5 text-white position-relative"
+    style="background: linear-gradient(135deg, #d6347d, #ff6b9e)"
+  >
+    <div
+      class="container text-center position-relative"
+      data-aos="fade-up"
+      tabindex="0"
+      aria-label="Our beautiful future message"
+    >
+      <i
+        class="bi bi-stars fs-1 mb-3"
+        aria-hidden="true"
+        style="text-shadow: 0 0 10px #fff"
+      ></i>
+      <h2 class="dancing display-3 mb-4">Our Beautiful Future</h2>
+      <div class="mx-auto" style="max-width: 800px; user-select: text;">
+        <p class="fs-4 mb-4">
+          As we celebrate your birthday today, I want you to know that my
+          greatest wish is to keep building a life full of love, laughter and
+          beautiful moments with you.
+        </p>
+        <p class="fs-4 mb-4">
+          I promise to stand by your side through all of life's adventures, to
+          support your dreams, to cherish every ordinary moment we share, and
+          to keep falling in love with you more each day.
+        </p>
+        <p class="fs-4 dancing">
+          Happy Birthday my love. Here's to many more years of happiness
+          together.
+        </p>
+      </div>
+      <div class="mt-5">
+        <button
+          class="btn btn-outline-light btn-lg rounded-pill px-4 py-2 pulse-animation"
+          onclick="launchConfetti()"
+          aria-label="Celebrate us with confetti"
+        >
+          <i class="bi bi-balloon-heart-fill me-2"></i>Celebrate Us!
+        </button>
+      </div>
+    </div>
+    <div class="floating-container floating-hearts" aria-hidden="true">
+      <div
+        class="floating-element"
+        style="top: 20%; left: 10%; animation-delay: 0s; font-size: 2rem;"
+        >✨</div
+      >
+      <div
+        class="floating-element"
+        style="top: 30%; left: 80%; animation-delay: 1s; font-size: 2.5rem;"
+        >🌟</div
+      >
+      <div
+        class="floating-element"
+        style="top: 70%; left: 20%; animation-delay: 2s; font-size: 2rem;"
+        >🎉</div
+      >
+      <div
+        class="floating-element"
+        style="top: 80%; left: 70%; animation-delay: 3s; font-size: 2.2rem;"
+        >🎊</div
+      >
+      <div
+        class="floating-element"
+        style="top: 50%; left: 50%; font-size: 3rem; animation-delay: 1.3s;"
+        >💖</div
+      >
+      <div
+        class="floating-element"
+        style="top: 60%; left: 30%; font-size: 2.5rem; animation-delay: 2.5s;"
+        >💘</div
+      >
     </div>
   </section>
 
@@ -1206,83 +1309,7 @@ The most beautiful girl ever
     </div>
   </section>
 
-  <!-- Section 8: Future Message -->
-  <section
-    id="section8"
-    class="py-5 text-white position-relative"
-    style="background: linear-gradient(135deg, #d6347d, #ff6b9e)"
-  >
-    <div
-      class="container text-center position-relative"
-      data-aos="fade-up"
-      tabindex="0"
-      aria-label="Our beautiful future message"
-    >
-      <i
-        class="bi bi-stars fs-1 mb-3"
-        aria-hidden="true"
-        style="text-shadow: 0 0 10px #fff"
-      ></i>
-      <h2 class="dancing display-3 mb-4">Our Beautiful Future</h2>
-      <div class="mx-auto" style="max-width: 800px; user-select: text;">
-        <p class="fs-4 mb-4">
-          As we celebrate your birthday today, I want you to know that my
-          greatest wish is to keep building a life full of love, laughter and
-          beautiful moments with you.
-        </p>
-        <p class="fs-4 mb-4">
-          I promise to stand by your side through all of life's adventures, to
-          support your dreams, to cherish every ordinary moment we share, and
-          to keep falling in love with you more each day.
-        </p>
-        <p class="fs-4 dancing">
-          Happy Birthday my love. Here's to many more years of happiness
-          together.
-        </p>
-      </div>
-      <div class="mt-5">
-        <button
-          class="btn btn-outline-light btn-lg rounded-pill px-4 py-2 pulse-animation"
-          onclick="launchConfetti()"
-          aria-label="Celebrate us with confetti"
-        >
-          <i class="bi bi-balloon-heart-fill me-2"></i>Celebrate Us!
-        </button>
-      </div>
-    </div>
-    <div class="floating-container floating-hearts" aria-hidden="true">
-      <div
-        class="floating-element"
-        style="top: 20%; left: 10%; animation-delay: 0s; font-size: 2rem;"
-        >✨</div
-      >
-      <div
-        class="floating-element"
-        style="top: 30%; left: 80%; animation-delay: 1s; font-size: 2.5rem;"
-        >🌟</div
-      >
-      <div
-        class="floating-element"
-        style="top: 70%; left: 20%; animation-delay: 2s; font-size: 2rem;"
-        >🎉</div
-      >
-      <div
-        class="floating-element"
-        style="top: 80%; left: 70%; animation-delay: 3s; font-size: 2.2rem;"
-        >🎊</div
-      >
-      <div
-        class="floating-element"
-        style="top: 50%; left: 50%; font-size: 3rem; animation-delay: 1.3s;"
-        >💖</div
-      >
-      <div
-        class="floating-element"
-        style="top: 60%; left: 30%; font-size: 2.5rem; animation-delay: 2.5s;"
-        >💘</div
-      >
-    </div>
-  </section>
+ 
 
   <!-- Footer -->
   <footer class="py-4 text-center">
