@@ -585,31 +585,50 @@
     class="vh-100 position-relative text-center d-flex align-items-end justify-content-center"
     style="background-image: url(image/HABIBA\ Birthday.jpg); background-position: top; background-size: contain; background-repeat: no-repeat; "
  >
-<audio id="bg-audio" src="audio/happy-birthday.mp3" loop></audio>
 
+
+<audio id="audio1" src="audio/audio-1.mp3"></audio>
 <script>
-const audio = document.getElementById('bg-audio');
+const audio = document.getElementById("audio1");
+let audioSystemReady = false;
+let isAudioPlaying = false;
 
-function tryPlayAudio() {
-  audio.play().then(() => {
-    // اشتغل الصوت
-    document.removeEventListener('scroll', tryPlayAudio);
-    document.removeEventListener('click', tryPlayAudio);
-    document.removeEventListener('mousemove', tryPlayAudio);
-  }).catch((e) => {
-    console.log("المتصفح منع التشغيل: ", e);
-  });
+// تابع يتحقق إذا السكشن ظاهر على الشاشة
+function checkSectionAndToggleAudio() {
+  if (!audioSystemReady) return;
+
+  const section = document.getElementById("section1");
+  const rect = section.getBoundingClientRect();
+  const visible = rect.top < window.innerHeight && rect.bottom > 0;
+
+  if (visible && !isAudioPlaying) {
+    // شغل الصوت
+    audio.play().then(() => {
+      isAudioPlaying = true;
+    }).catch((e) => {
+      console.log("المتصفح منع التشغيل:", e);
+    });
+  } else if (!visible && isAudioPlaying) {
+    // أوقف الصوت
+    audio.pause();
+    audio.currentTime = 0;
+    isAudioPlaying = false;
+  }
 }
 
-// شغل الصوت بعد أول حركة
-document.addEventListener('scroll', tryPlayAudio);
-document.addEventListener('click', tryPlayAudio);
-document.addEventListener('mousemove', tryPlayAudio);
+// يفعل النظام بعد أول حركة من المستخدم
+function activateAudioSystem() {
+  audioSystemReady = true;
+  checkSectionAndToggleAudio();
+}
+
+document.addEventListener("click", activateAudioSystem, { once: true });
+document.addEventListener("scroll", activateAudioSystem, { once: true });
+document.addEventListener("mousemove", activateAudioSystem, { once: true });
+
+// تابع للتحقق المستمر أثناء التمرير
+window.addEventListener("scroll", checkSectionAndToggleAudio);
 </script>
-
-
-<audio id="birthday-audio" src="audio/حالات عيد ميلاد Happy birthday حالات واتساب هابي بيرث دي تو يو.mp3"></audio>
-
     <video
       autoplay
       muted
@@ -742,13 +761,24 @@ The most beautiful girl ever
         aria-pressed="false"
         aria-label="Love greeting card, click or press enter to flip"
       >
-       <div  style="width: 100%; height: 100%;"style="width: 280px; height: 180px; perspective: 1000px; margin: auto; cursor: pointer;" onclick="this.classList.toggle('flipped')">
+      <audio id="audio2" src="audio/audio-2.mp3"></audio>
+       <div  style="width: 100%; height: 100%;"style="width: 280px; height: 180px; perspective: 1000px; margin: auto; cursor: pointer;"onclick="
+  this.classList.toggle('flipped');
+  const audio = document.getElementById('audio2');
+  if (this.classList.contains('flipped')) {
+    audio.play();
+  } else {
+    audio.pause();
+    audio.currentTime = 0;
+  }
+"
+>
   <div style="width: 100%; height: 100%; transition: transform 0.8s ease; transform-style: preserve-3d; position: relative; border-radius: 15px;" class="inner">
     <div style="position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: bold; box-shadow: 0 10px 20px rgba(255, 105, 180, 0.2); background: #ffe6f0; border: 2px solid #ff6b9e;">
      <br> شو يا ترا مخبيلك🤔🤔
     <br>دوسي هنا لتعرفي🫣❤
     <br>يلا يلا دوسي هنا🫣
-
+   
       
 
     </div>
@@ -758,7 +788,7 @@ The most beautiful girl ever
 في هاد اليوم صغرونتي العثولة كبرت ثنة🥲❤🥹🥰
 ابوثو ي ناث محلاه 💋❤
 قمري إنتي 🤍
-كل عام وإنتي حبيبتي وقمري ونور عيني وحياتي وملكتي وملاكي وروحي وعروق قلبي ونبضي وعسولتي ودلوعتي وأميرتي وريحانة قلبي ونور مضوي حياتي وسعادتي كلها وأنيسة روحي وعمري ورفيقة دربي وشريكة حياتي ومماتي ،هفتخر فيكي طول عمري <br>❤❤❤❤❤❤❤❤❤❤❤❤
+كل عام وإنتي حبيبتي وقمري ونور عيني وحياتي وملكتي وملاكي وروحي وعروق قلبي ونبضي وعسولتي ودلوعتي وأميرتي وريحانة قلبي ونور مضوي حياتي وسعادتي كلها وأنيسة روحي وعمري ورفيقة دربي وشريكة حياتي ومماتي ،هفتخر فيكي طول عمري <br>❤❤❤❤❤❤❤❤❤❤❤❤<br>سكري الباب وراكي عشان الاغنية تطفي😚🤭🤭
     </div>
   </div>
   <style>
@@ -798,7 +828,85 @@ The most beautiful girl ever
     </div>
   </section>
 
-  <!-- Section 3: Movie Memories -->
+ 
+   <!-- Section =+3: Future Message -->
+  <section
+    id="section8"
+    class="py-5 text-white position-relative"
+    style="background: linear-gradient(135deg, #d6347d, #ff6b9e)"
+  >
+    <div
+      class="container text-center position-relative"
+      data-aos="fade-up"
+      tabindex="0"
+      aria-label="Our beautiful future message"
+    >
+      <i
+        class="bi bi-stars fs-1 mb-3"
+        aria-hidden="true"
+        style="text-shadow: 0 0 10px #fff"
+      ></i>
+      <h2 class="dancing display-3 mb-4">Our Beautiful Future</h2>
+      <div class="mx-auto" style="max-width: 800px; user-select: text;">
+        <p class="fs-4 mb-4">
+          As we celebrate your birthday today, I want you to know that my
+          greatest wish is to keep building a life full of love, laughter and
+          beautiful moments with you.
+        </p>
+        <p class="fs-4 mb-4">
+          I promise to stand by your side through all of life's adventures, to
+          support your dreams, to cherish every ordinary moment we share, and
+          to keep falling in love with you more each day.
+        </p>
+        <p class="fs-4 dancing">
+          Happy Birthday my love. Here's to many more years of happiness
+          together.
+        </p>
+      </div>
+      <div class="mt-5">
+        <button
+          class="btn btn-outline-light btn-lg rounded-pill px-4 py-2 pulse-animation"
+          onclick="launchConfetti()"
+          aria-label="Celebrate us with confetti"
+        >
+          <i class="bi bi-balloon-heart-fill me-2"></i>Celebrate Us!
+        </button>
+      </div>
+    </div>
+    <div class="floating-container floating-hearts" aria-hidden="true">
+      <div
+        class="floating-element"
+        style="top: 20%; left: 10%; animation-delay: 0s; font-size: 2rem;"
+        >✨</div
+      >
+      <div
+        class="floating-element"
+        style="top: 30%; left: 80%; animation-delay: 1s; font-size: 2.5rem;"
+        >🌟</div
+      >
+      <div
+        class="floating-element"
+        style="top: 70%; left: 20%; animation-delay: 2s; font-size: 2rem;"
+        >🎉</div
+      >
+      <div
+        class="floating-element"
+        style="top: 80%; left: 70%; animation-delay: 3s; font-size: 2.2rem;"
+        >🎊</div
+      >
+      <div
+        class="floating-element"
+        style="top: 50%; left: 50%; font-size: 3rem; animation-delay: 1.3s;"
+        >💖</div
+      >
+      <div
+        class="floating-element"
+        style="top: 60%; left: 30%; font-size: 2.5rem; animation-delay: 2.5s;"
+        >💘</div
+      >
+    </div>
+  </section>
+   <!-- Section 3: Movie Memories -->
   <section
     id="section3"
     class="py-5"
@@ -899,83 +1007,6 @@ The most beautiful girl ever
           ></span>
         </button>
       </div>
-    </div>
-  </section>
-   <!-- Section 8: Future Message -->
-  <section
-    id="section8"
-    class="py-5 text-white position-relative"
-    style="background: linear-gradient(135deg, #d6347d, #ff6b9e)"
-  >
-    <div
-      class="container text-center position-relative"
-      data-aos="fade-up"
-      tabindex="0"
-      aria-label="Our beautiful future message"
-    >
-      <i
-        class="bi bi-stars fs-1 mb-3"
-        aria-hidden="true"
-        style="text-shadow: 0 0 10px #fff"
-      ></i>
-      <h2 class="dancing display-3 mb-4">Our Beautiful Future</h2>
-      <div class="mx-auto" style="max-width: 800px; user-select: text;">
-        <p class="fs-4 mb-4">
-          As we celebrate your birthday today, I want you to know that my
-          greatest wish is to keep building a life full of love, laughter and
-          beautiful moments with you.
-        </p>
-        <p class="fs-4 mb-4">
-          I promise to stand by your side through all of life's adventures, to
-          support your dreams, to cherish every ordinary moment we share, and
-          to keep falling in love with you more each day.
-        </p>
-        <p class="fs-4 dancing">
-          Happy Birthday my love. Here's to many more years of happiness
-          together.
-        </p>
-      </div>
-      <div class="mt-5">
-        <button
-          class="btn btn-outline-light btn-lg rounded-pill px-4 py-2 pulse-animation"
-          onclick="launchConfetti()"
-          aria-label="Celebrate us with confetti"
-        >
-          <i class="bi bi-balloon-heart-fill me-2"></i>Celebrate Us!
-        </button>
-      </div>
-    </div>
-    <div class="floating-container floating-hearts" aria-hidden="true">
-      <div
-        class="floating-element"
-        style="top: 20%; left: 10%; animation-delay: 0s; font-size: 2rem;"
-        >✨</div
-      >
-      <div
-        class="floating-element"
-        style="top: 30%; left: 80%; animation-delay: 1s; font-size: 2.5rem;"
-        >🌟</div
-      >
-      <div
-        class="floating-element"
-        style="top: 70%; left: 20%; animation-delay: 2s; font-size: 2rem;"
-        >🎉</div
-      >
-      <div
-        class="floating-element"
-        style="top: 80%; left: 70%; animation-delay: 3s; font-size: 2.2rem;"
-        >🎊</div
-      >
-      <div
-        class="floating-element"
-        style="top: 50%; left: 50%; font-size: 3rem; animation-delay: 1.3s;"
-        >💖</div
-      >
-      <div
-        class="floating-element"
-        style="top: 60%; left: 30%; font-size: 2.5rem; animation-delay: 2.5s;"
-        >💘</div
-      >
     </div>
   </section>
 
